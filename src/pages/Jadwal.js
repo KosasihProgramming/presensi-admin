@@ -678,9 +678,14 @@ class JadwalKehadiran extends Component {
       { value: "November", label: "November" },
       { value: "Desember", label: "Desember" },
     ];
+    const yearOption = [
+      { value: "2024", label: "2024" },
+      { value: "2025", label: "2025" },
+      { value: "2026", label: "2026" },
+    ];
     return (
-      <div className="container mx-auto mt-2 ">
-        <div className="rounded-lg bg-white shadow-lg my-5 w-full">
+      <div className="container mx-auto mt-2">
+        <div className="rounded-lg bg-white shadow-lg my-5">
           <div className="flex flex-col p-10">
             <h4 className="text-black font-bold text-xl mt-5">
               Form Input Periode Jadwal
@@ -691,12 +696,10 @@ class JadwalKehadiran extends Component {
 
             {this.state.isUpdate ? (
               <>
-                <div className="form-input ">
+                <div className="form-input">
                   <Row className="form-row">
                     <Form.Group className="form-field">
-                      <Form.Label className="label-text text-sm">
-                        Pegawai :
-                      </Form.Label>
+                      <Form.Label className="label-text">Pegawai :</Form.Label>
                       <div className="dropdown-container">
                         <Select
                           onChange={(selectedOption) =>
@@ -938,6 +941,21 @@ class JadwalKehadiran extends Component {
                 placeholder="Pilih Bulan..."
                 className="border-none"
                 options={months}
+                isSearchable={true}
+                isClearable
+              />
+            </div>
+
+            <div className="w-[20rem] rounded-md  border border-teal-600 shadow-md cursor-pointer">
+              <Select
+                onChange={(selectedOption) =>
+                  this.getJadwal(selectedOption.value)
+                }
+                name="Tahun"
+                inputId="input"
+                placeholder="Pilih Tahun..."
+                className="border-none"
+                options={yearOption}
                 isSearchable={true}
                 isClearable
               />

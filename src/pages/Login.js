@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { urlAPI } from "../config/global";
-
+import Select from "react-select";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +10,7 @@ class Login extends Component {
       username: "",
       password: "",
       error: "",
+      database: "",
     };
   }
 
@@ -45,6 +46,10 @@ class Login extends Component {
   };
 
   render() {
+    const dataOption = [
+      { value: "26.45.147.210", text: "Kemiling" },
+      { value: "26.142.134.35", text: "Rajabasa" },
+    ];
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
@@ -85,6 +90,19 @@ class Login extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={(e) => this.setState({ password: e.target.value })}
+                />
+              </div>
+              <div className="w-[100%]">
+                <Select
+                  onChange={(selectedOption) =>
+                    this.setState({ database: selectedOption })
+                  }
+                  inputId="input"
+                  className="w-full border border-teal-600 rounded-md"
+                  value={this.state.kelamin}
+                  placeholder="Pilih Jenis Kelamin..."
+                  options={dataOption}
+                  isSearchable={true}
                 />
               </div>
             </div>

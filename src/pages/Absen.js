@@ -336,7 +336,7 @@ class Absen extends Component {
       console.log("pegawi", pegawai);
       if (!pegawai[0].nik.includes("AP")) {
         const jabatan = await this.cekJabatan(pegawai[0]);
-        if (jabatan == true) { 
+        if (jabatan == true) {
           if (pindahKlinik === 1) {
             if (telatMenit > 0 && telatMenit <= 30) {
               denda = 7500;
@@ -439,6 +439,7 @@ class Absen extends Component {
       }
 
       const absenMasuk = {
+        pegawai: namaPegawai,
         barcode: barcode,
         id_jadwal: idJadwal,
         id_detail_jadwal: idDetailJadwal,

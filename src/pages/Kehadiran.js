@@ -157,12 +157,12 @@ class Kehadiran extends Component {
         data.tanggal,
         <img
           className="w-24 rounded-full"
-          src={`${urlAPI}/uploads/${data.foto_masuk}`}
+          src={`${data.foto_masuk}`}
           alt={data.foto_masuk}
         />,
         <img
           className="w-24 rounded-full"
-          src={`${urlAPI}/uploads/${data.foto_keluar}`}
+          src={`${data.foto_keluar}`}
           alt={data.foto_keluar}
         />,
       ];
@@ -210,7 +210,7 @@ class Kehadiran extends Component {
             <>
               <img
                 className="w-24 rounded-md"
-                src={`${urlAPI}/uploads/${data.bukti}`}
+                src={`${data.bukti}`}
                 alt={data.bukti}
               />
             </>
