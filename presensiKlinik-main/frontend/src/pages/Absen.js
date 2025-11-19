@@ -472,7 +472,7 @@ class Absen extends Component {
         nama_dokter_pengganti: dokterPengganti,
         nama_petugas: this.state.namaPetugas,
         keterangan: "Masuk: " + this.state.keterangan,
-        lokasiAbsen: this.state.namaKlinik,
+        lokasiAbsen: namaKlinik,
       };
       console.log(absenMasuk);
       axios
