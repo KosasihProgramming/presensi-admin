@@ -16,7 +16,9 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("masuk");
     try {
+      console.log(`${this.state.url}/login/check`);
       const response = await axios.post(`${this.state.url}/login/check`, {
         username: this.state.username, // Updated field name
         password: this.state.password, // Updated field name

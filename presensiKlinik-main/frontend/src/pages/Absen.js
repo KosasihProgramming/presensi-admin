@@ -239,16 +239,27 @@ class Absen extends Component {
       console.error("Error:", error);
     }
   };
-  getCurrentTime = () => {
-    const now = new Date();
-    const hours = now.getHours(); // Mengambil jam saat ini
-    const minutes = now.getMinutes(); // Mengambil menit saat ini
+  getCurrentTime = async () => {
+    try {
+      // Menggunakan NTP server via API
+      const response = await fetch("https://time.akamai.com/");
+      const serverTime = response.headers.get("Date");
 
-    // Menambahkan leading zero jika kurang dari 10
-    const formattedHours = hours < 10 ? "0" + hours : hours;
-    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+      const datetime = new Date(serverTime);
+      // Convert ke WIB (UTC+7)
+      const wibTime = new Date(datetime.getTime() + 7 * 60 * 60 * 1000);
 
-    return `${formattedHours}:${formattedMinutes}`;
+      const hours = wibTime.getUTCHours();
+      const minutes = wibTime.getUTCMinutes();
+
+      return `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}`;
+    } catch (error) {
+      throw new Error(
+        "Tidak dapat mengambil waktu dari server: " + error.message
+      );
+    }
   };
   handleSubmit = async (e) => {
     e.preventDefault();
