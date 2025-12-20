@@ -78,6 +78,7 @@ export default function IzinPage(props) {
       formData.append("jenisizin", jenis.value);
       formData.append("alasan", alasan);
       formData.append("barcode", barcode);
+      formData.append("nama", nama);
 
       // Jika ada file gambar yang diunggah
       if (isFile && image) {
@@ -104,7 +105,7 @@ export default function IzinPage(props) {
         });
 
         const text = `${nama} ${jenis.value} Selama ${durasi} Menit, Dengan Alasan ${alasan}`;
-        await sendMessage(text); // Menunggu pengiriman pesan selesai
+        // await sendMessage(text); // Menunggu pengiriman pesan selesai
         sessionStorage.setItem("isSuccess", true);
         navigate("/success"); // Pindah ke halaman utama atau rute lain
         // setOpen(); // Menutup form atau melakukan tindakan lain setelah data berhasil disimpan
@@ -160,6 +161,7 @@ export default function IzinPage(props) {
         console.log("Error:", error);
       });
   };
+  
   const sendMessage = async (message) => {
     try {
       const botToken = "bot6823587684:AAE4Ya6Lpwbfw8QxFYec6xAqWkBYeP53MLQ";
@@ -190,6 +192,7 @@ export default function IzinPage(props) {
       console.error("Error:", error);
     }
   };
+
   function hitungSelisihMenit(jam1, jam2) {
     // Format input jam: "HH:MM" (contoh: "14:30", "16:45")
     const formatTime = (time) => {

@@ -246,8 +246,38 @@ const Pulang = () => {
       } else {
         console.log("Gagal mengirim pesan");
       }
+
+      await sendMessageDiscord(message);
     } catch (error) {
       console.error("Error:", error);
+    }
+  };
+
+  const sendMessageDiscord = async (text) => {
+    try {
+      const formattedText = text
+        .replace(/<b>/gi, "**")
+        .replace(/<\/b>/gi, "**");
+
+      const response = await fetch(
+        "https://discord.com/api/webhooks/1451765232006463652/wBSaTDK1MesxWNIHTNy28MTAmhEB63zACewtMxGCeDFX4PN-ChV3WgXYh0YjGp7Xf_-H",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+          body: JSON.stringify({
+            content: formattedText.slice(0, 2000),
+          }),
+        }
+      );
+
+      if (response.status === 204) {
+        console.log("✅ Pesan Discord berhasil dikirim");
+      }
+    } catch (error) {
+      console.error("❌ Error Discord:", error);
     }
   };
   const getCurrentTime = () => {
